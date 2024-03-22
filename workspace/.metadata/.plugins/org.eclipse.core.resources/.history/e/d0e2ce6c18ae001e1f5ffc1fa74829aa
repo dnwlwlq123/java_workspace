@@ -1,0 +1,30 @@
+package book;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+
+
+public class BookPrint implements Book{
+
+	@Override
+	public void execute(ArrayList<BookDTO> list) throws IOException {
+		System.out.println();
+		BufferedInputStream bis = new BufferedInputStream (new FileInputStream("book.txt"));
+		int data;
+		while( (data = bis.read()) != -1) {
+			System.out.print((char) data);
+		}
+		System.out.println();
+		
+		bis.close();
+		System.out.println("책 코드\t책 제목\t책 저자\t책 가격\t\t책 수량\t\t합계");
+		for(BookDTO bookDTO : list) {
+			System.out.println(bookDTO);
+			
+		
+		}
+	}
+}

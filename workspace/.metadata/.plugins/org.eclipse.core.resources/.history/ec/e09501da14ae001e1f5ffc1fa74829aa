@@ -1,0 +1,23 @@
+package book;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+
+
+public class BookFileWrite implements Book{
+
+	@Override
+	public void execute(ArrayList<BookDTO> list) {
+		
+		BookDTO  bookDTO = new BookDTO(String code, String title, int author, price, qty );
+		
+		
+		//파일로 저장
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("book.txt"));
+		oos.writeObject(bookDTO);
+		oos.close();
+	}
+
+}

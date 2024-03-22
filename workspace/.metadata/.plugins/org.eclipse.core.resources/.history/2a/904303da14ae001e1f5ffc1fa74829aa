@@ -1,0 +1,29 @@
+package book;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+
+
+public class BookSort implements Book{
+
+	@Override
+	public void execute(ArrayList<BookDTO> list) {
+		
+		Comparator<BookDTO> com =  new Comparator<BookDTO>() {
+			@Override
+			public int compare(BookDTO s1,  BookDTO s2) {
+				return s1.getTitle().compareTo(s2.getTitle()); //내림차순 *-1안쓰고 
+			}
+		};
+		Collections.sort(list, com);
+		System.out.println("정렬 후 : ");
+		for(BookDTO bookDTO : list) {
+			System.out.println(bookDTO);
+			}
+		System.out.println();
+		}
+	}
+
+}

@@ -1,0 +1,29 @@
+package book;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
+
+
+public class BookFileRead implements Book{
+
+	@Override
+	public void execute(ArrayList<BookDTO> list) throws IOException, ClassNotFoundException {
+
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream("book.txt"));
+		list.clear();
+        list.addAll((ArrayList<BookDTO>) ois.readObject());
+        for (BookDTO bookDTO : list) {
+		System.out.println("책 코드 번호 = " + bookDTO.getCode());
+		System.out.println("책 제목 = " + bookDTO.getTitle());
+		System.out.println("책 저자 = " + bookDTO.getAuthor());
+		System.out.println("책 가격 = " + bookDTO.getPrice());
+		System.out.println("책 수량 = " + bookDTO.getQty());
+        }
+		ois.close();
+		
+	}
+
+}
